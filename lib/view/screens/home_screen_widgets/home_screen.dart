@@ -138,6 +138,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                // Gradient overlay at the bottom for text readability
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  height: 190,
+                  child: ClipPath(
+                    clipper: CurvedHeaderClipper(),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black.withOpacity(0.55),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 // Overlay greeting and search bar
                 Positioned(
                   left: 24,
@@ -156,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Shadow(
                               offset: Offset(0, 2),
                               blurRadius: 8,
-                              color: Colors.black26,
+                              color: Colors.black54, // stronger shadow
                             ),
                           ],
                         ),
@@ -172,18 +194,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             Shadow(
                               offset: Offset(0, 2),
                               blurRadius: 8,
-                              color: Colors.black26,
+                              color: Colors.black54, // stronger shadow
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(height: 18),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 24),
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Align(
