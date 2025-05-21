@@ -62,3 +62,7 @@ export 'package:turathi/view/screens/home_screen_widgets/home_screen.dart';
 export 'package:turathi/view/screens/places_screens/places_screen.dart';
 export 'package:turathi/view/screens/profile_screens/profile.dart';
 export 'package:turathi/utils/Router/router_class.dart';
+export 'package:turathi/view/screens/guides_screen.dart';
+export 'package:turathi/view/screens/admin/guide_management_screen.dart';
+export 'package:turathi/view/widgets/guide_card.dart';
+export 'package:turathi/view/screens/guide_details_screen.dart';

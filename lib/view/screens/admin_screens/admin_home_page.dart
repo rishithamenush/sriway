@@ -38,6 +38,12 @@ class _AdminHomePageState extends State<AdminHomePage> {
       route: eventsAdminRoute,
     ),
     _AdminAction(
+      label: 'Manage Guides',
+      icon: FontAwesomeIcons.users,
+      color: Color(0xFF7B1FA2),
+      route: guidesAdminRoute,
+    ),
+    _AdminAction(
       label: 'Reports',
       icon: FontAwesomeIcons.fileAlt,
       color: Color(0xFFF9A825),

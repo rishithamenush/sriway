@@ -648,7 +648,9 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             }),
             _serviceIcon(context, Icons.car_rental, 'Rentals', Colors.blue, () {}),
-            _serviceIcon(context, Icons.person, 'Guides', Colors.blue, () {}),
+            _serviceIcon(context, Icons.person, 'Guides', Colors.blue, () {
+              Navigator.of(context).pushNamed(guidesRoute);
+            }),
             _serviceIcon(context, Icons.map, 'Map', Colors.blue, () async {
               final url = Uri.parse('https://www.google.com/maps');
               try {

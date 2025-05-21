@@ -64,3 +64,8 @@ const String editPlacesAdminRoute = '/signInAdmin/home/placesAdmin/placeInfo/edi
 const String eventsAdminRoute = '/signInAdmin/home/eventsAdmin';
 const String adminAddNewPlaceRoute = '/signInAdmin/home/addNewPlace';
 const String adminAddNewEventRoute = '/signInAdmin/home/addNewEvent';
+
+// Routes for guides feature
+const String guidesRoute = '/bottomScreen/guides';
+const String guideDetailsRoute = '/bottomScreen/guides/details';
+const String guidesAdminRoute = '/signInAdmin/home/guidesAdmin';

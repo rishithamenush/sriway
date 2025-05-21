@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/data_layer.dart';
+import '../../core/models/guide.dart';
 import '../../view/view_layer.dart';
 
 // Class responsible for generating routes in the application
@@ -169,6 +170,19 @@ class MyRouter {
         return MaterialPageRoute(
           builder: (_) => const AddNewEvent(),
         );
+      case guidesRoute:
+        {
+          return _route(const GuidesScreen());
+        }
+      case guideDetailsRoute:
+        {
+          final arg = settings.arguments as Guide;
+          return _route(GuideDetailsScreen(guide: arg));
+        }
+      case guidesAdminRoute:
+        {
+          return _route(const GuideManagementScreen());
+        }
       default:
         {
           final arg = settings.name as String;
