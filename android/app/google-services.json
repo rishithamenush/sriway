@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "904301111006",
+    "project_id": "sriway-6889f",
+    "storage_bucket": "sriway-6889f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904301111006:android:d949ed4b9f66ced947844f",
+        "android_client_info": {
+          "package_name": "com.example.turathi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904301111006-8rgjfo6s7dfd9fnubsopn8c1n2t7v56h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnF2mjV-4h--wQaUiceqey6nRNz6g0GuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904301111006-8rgjfo6s7dfd9fnubsopn8c1n2t7v56h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904301111006:android:7778a743f75a6c5c47844f",
+        "android_client_info": {
+          "package_name": "com.sriway.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904301111006-8rgjfo6s7dfd9fnubsopn8c1n2t7v56h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnF2mjV-4h--wQaUiceqey6nRNz6g0GuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904301111006-8rgjfo6s7dfd9fnubsopn8c1n2t7v56h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
