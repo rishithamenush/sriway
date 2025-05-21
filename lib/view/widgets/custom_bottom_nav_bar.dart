@@ -55,15 +55,13 @@ class NavigationBar extends StatelessWidget {
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: selectedIndex == destination.index
-                    ? Color(0xff6E232F)
+                    ? Color(0xFF64B5F6)
                     : Colors.transparent,
                 borderRadius: BorderRadius.all(Radius.circular(25))),
             child: Icon(
               destination.icon,
-              color: selectedIndex == destination.index
-                  ? Colors.white
-                  : Color(0xff6E232F),
-                     size: iconSize, 
+              color: Color(0xFF1E64D7),
+              size: iconSize, 
             ),
           ),
           label: '',
