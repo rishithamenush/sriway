@@ -66,9 +66,11 @@ class TextWidget extends StatelessWidget {
 
 
 List buttonsList = [
+  ButtonWidget(txt: "Add New Place", routeName: adminAddNewPlaceRoute),
+  ButtonWidget(txt: "Add New Event", routeName: adminAddNewEventRoute),
+  ButtonWidget(txt: "Manage Places", routeName: placesAdminRoute),
+  ButtonWidget(txt: "Manage Events", routeName: eventsAdminRoute),
   ButtonWidget(txt: "Reports", routeName: allReportsAdminRoute),
-  ButtonWidget(txt: "Places", routeName: placesAdminRoute),
   ButtonWidget(txt: "Requests", routeName: requestsAdminRoute),
-  ButtonWidget(txt: "Events", routeName: eventsAdminRoute),
   TextWidget(),
 ];

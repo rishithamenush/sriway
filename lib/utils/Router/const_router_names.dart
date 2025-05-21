@@ -54,8 +54,7 @@ const String editPlaceRoute =
 const String signInAdminRoute = '/signInAdmin';
 const String homeAdminRoute = '/signInAdmin/home';
 const String allReportsAdminRoute = '/signInAdmin/home/allReportsAdminRoute';
-const String placeReportsAdminRoute =
-    '/signInAdmin/home/allReportsAdminRoute/PlaceReportsScreen';
+const String placeReportsAdminRoute = '/signInAdmin/home/allReportsAdminRoute/PlaceReportsScreen';
 const String requestsAdminRoute = '/signInAdmin/home/requestsAdminRoute';
 const String requestPDFViewAdminRoute = '/signInAdmin/home/requestPDFViewAdminRoute';
 
@@ -63,3 +62,5 @@ const String requestPDFViewAdminRoute = '/signInAdmin/home/requestPDFViewAdminRo
 const String placesAdminRoute = '/signInAdmin/home/placesAdmin';
 const String editPlacesAdminRoute = '/signInAdmin/home/placesAdmin/placeInfo/editPlacesAdminRoute';
 const String eventsAdminRoute = '/signInAdmin/home/eventsAdmin';
+const String adminAddNewPlaceRoute = '/signInAdmin/home/addNewPlace';
+const String adminAddNewEventRoute = '/signInAdmin/home/addNewEvent';

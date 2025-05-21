@@ -4,7 +4,7 @@ import '../../view/view_layer.dart';
 
 // Class responsible for generating routes in the application
 class MyRouter {
-  static Route generateRoute(RouteSettings settings) {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case initRoute:
         {
@@ -96,21 +96,20 @@ class MyRouter {
           return _route(EventDetailsScreen(eventModel: arg));
         }
       case addNewPlaceRoute:
-        {
-          return _route(const AddNewPlace());
-        }
+        return MaterialPageRoute(
+          builder: (_) => const AddNewPlace(),
+        );
       case editPlaceRoute:
-        {
-          final arg = settings.arguments as PlaceModel;
-
-          return _route(EditPlace(
+        final arg = settings.arguments as PlaceModel;
+        return MaterialPageRoute(
+          builder: (_) => EditPlace(
             placeModel: arg,
-          ));
-        }
+          ),
+        );
       case addNewEventRoute:
-        {
-          return _route(const AddNewEvent());
-        }
+        return MaterialPageRoute(
+          builder: (_) => const AddNewEvent(),
+        );
       case requestToBeExpertRoute:
         {
           return _route(const RequestToBeExpert());
@@ -158,11 +157,18 @@ class MyRouter {
       case editPlacesAdminRoute:
         {
           final arg = settings.arguments as PlaceModel;
-
           return _route(EditPlaceAdmin(
-          placeModel: arg,
+            placeModel: arg,
           ));
         }
+      case adminAddNewPlaceRoute:
+        return MaterialPageRoute(
+          builder: (_) => const AddNewPlace(),
+        );
+      case adminAddNewEventRoute:
+        return MaterialPageRoute(
+          builder: (_) => const AddNewEvent(),
+        );
       default:
         {
           final arg = settings.name as String;

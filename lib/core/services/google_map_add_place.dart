@@ -16,8 +16,10 @@ class AddPlaceMap extends StatefulWidget {
 
 class _AddPlaceMapState extends State<AddPlaceMap> {
   late GoogleMapController mapController;
+  final double defaultLat = 7.8731; // Sri Lanka center
+  final double defaultLng = 80.7718;
   late CameraPosition cam_pos = CameraPosition(
-      target: LatLng(sharedUser.latitude!, sharedUser.longitude!), zoom: 13);
+      target: LatLng(sharedUser.latitude ?? defaultLat, sharedUser.longitude ?? defaultLng), zoom: 13);
 
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();

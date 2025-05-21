@@ -18,12 +18,6 @@ class _EventsScreenState extends State<EventsScreen> {
     String appBarText= "Events";
     EventProvider provider = Provider.of<EventProvider>(context);
     return Scaffold(
-      floatingActionButton: AddButton(
-        onPressed: () {
-            Navigator.of(context).pushNamed(addNewEventRoute);
-
-        },
-      ),
       backgroundColor: ThemeManager.background,
       appBar: AppBar(
         backgroundColor: ThemeManager.background,

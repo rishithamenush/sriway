@@ -135,11 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize:
                               LayoutManager.widthNHeight0(context, 0) * 0.017),
                     ),
-                    AddButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(addNewPlaceRoute);
-                      },
-                    )
                   ],
                 ),
               ),
