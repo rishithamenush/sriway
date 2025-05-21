@@ -647,7 +647,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               }
             }),
-            _serviceIcon(context, Icons.car_rental, 'Rentals', Colors.blue, () {}),
+            _serviceIcon(context, Icons.car_rental, 'Rentals', Colors.blue, () {
+              Navigator.of(context).pushNamed(carsRoute);
+            }),
             _serviceIcon(context, Icons.person, 'Guides', Colors.blue, () {
               Navigator.of(context).pushNamed(guidesRoute);
             }),

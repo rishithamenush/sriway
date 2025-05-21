@@ -69,3 +69,8 @@ const String adminAddNewEventRoute = '/signInAdmin/home/addNewEvent';
 const String guidesRoute = '/bottomScreen/guides';
 const String guideDetailsRoute = '/bottomScreen/guides/details';
 const String guidesAdminRoute = '/signInAdmin/home/guidesAdmin';
+
+// Route for cars feature
+const String carsRoute = '/bottomScreen/cars';
+const String carDetailsRoute = '/bottomScreen/cars/details';
+const String carsAdminRoute = '/signInAdmin/home/carsAdmin';

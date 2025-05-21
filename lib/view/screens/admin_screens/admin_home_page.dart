@@ -44,6 +44,12 @@ class _AdminHomePageState extends State<AdminHomePage> {
       route: guidesAdminRoute,
     ),
     _AdminAction(
+      label: 'Manage Cars',
+      icon: FontAwesomeIcons.car,
+      color: Color(0xFF1976D2),
+      route: carsAdminRoute,
+    ),
+    _AdminAction(
       label: 'Reports',
       icon: FontAwesomeIcons.fileAlt,
       color: Color(0xFFF9A825),
