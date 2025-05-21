@@ -50,6 +50,7 @@ class NavigationBar extends StatelessWidget {
       selectedItemColor: Colors.white,
       currentIndex: selectedIndex,
       items: destinations.map((destination) {
+        final bool isHome = destination.icon == Icons.home_rounded;
         return BottomNavigationBarItem(
           icon: Container(
             padding: EdgeInsets.all(10),
@@ -61,7 +62,7 @@ class NavigationBar extends StatelessWidget {
             child: Icon(
               destination.icon,
               color: Color(0xFF1E64D7),
-              size: iconSize, 
+              size: isHome ? iconSize * 1.35 : iconSize,
             ),
           ),
           label: '',
