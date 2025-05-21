@@ -14,200 +14,205 @@ class AdminSignIn extends StatefulWidget {
 class _AdminSignInState extends State<AdminSignIn> {
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
-  bool flag = false;
+  bool _obscurePassword = true;
   GlobalKey<FormState> key = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
     AdminService service = AdminService();
     return Scaffold(
-      backgroundColor: const Color(0xffEAEBEF),
-      body: SingleChildScrollView(
-        child: Form(
-            key: key,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Stack(
+      key: const Key("admin_sign_in"),
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned(
+            top: -40,
+            left: 0,
+            right: 0,
+            child: Image.asset(
+              'assets/images/img_png/splash.jpg',
+              fit: BoxFit.cover,
+              height: MediaQuery.of(context).size.height * 0.5,
+            ),
+          ),
+
+          // Foreground Panel
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.65,
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+              ),
+              child: SingleChildScrollView(
+                child: Form(
+                  key: key,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(150.0),
-                          bottomRight: Radius.circular(150.0),
-                        ),
-                        child: Transform.scale(
-                          scale: 1.1,
-                          child: Image.asset(
-                            'assets/images/img_png/profile.png',
-                            width: double.infinity,
-                            height:
-                                LayoutManager.widthNHeight0(context, 1) * 0.54,
-                            fit: BoxFit.fitWidth,
+                      Image.asset('assets/images/img_png/img.png', height: 120),
+                      const SizedBox(height: 20),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'ADMIN LOGIN',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black87,
                           ),
                         ),
                       ),
-                      Positioned(
-                        top: LayoutManager.widthNHeight0(context, 1) * 0.155,
-                        left: LayoutManager.widthNHeight0(context, 1) * 0.08,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Turathi",
-                              style: TextStyle(
-                                  fontSize:
-                                      LayoutManager.widthNHeight0(context, 1) *
-                                          0.084,
-                                  color: ThemeManager.second,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: ThemeManager.fontFamily),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: LayoutManager.widthNHeight0(context, 1) * 0.18,
-                  ),
-                  SizedBox(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(
-                              left: LayoutManager.widthNHeight0(context, 1) *
-                                  0.02,
-                              right:
-                                  LayoutManager.widthNHeight0(context, 1) * 0.6,
-                              bottom: LayoutManager.widthNHeight0(context, 0) *
-                                  0.02),
-                        ),
-                        TextFormFieldWidgetSign(
-                          passToggle: false,
-                          passController: _idController,
-                          labelText: 'ID',
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Enter Admin ID";
-                            }
+                      const SizedBox(height: 16),
 
-                            return null;
-                          },
-                          str: "000000",
+                      // Admin ID Field
+                      TextFormField(
+                        controller: _idController,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          hintText: 'Enter Admin ID',
+                          prefixIcon: const Icon(Icons.admin_panel_settings),
+                          filled: true,
+                          fillColor: Colors.grey[100],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
                         ),
-                        SizedBox(
-                          height: LayoutManager.widthNHeight0(context, 1) * 0.1,
-                        ),
-                        TextFormFieldWidgetSign(
-                          passToggle: true,
-                          passController: _passController,
-                          labelText: 'password',
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Enter Password";
-                            } else if (value.length < 7) {
-                              return "Password length should be more than 7 characters";
-                            } else {
-                              return null;
-                            }
-                          },
-                          str: "Password",
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: LayoutManager.widthNHeight0(context, 1) * 0.2,
-                  ),
-                  SizedBox(
-                    width: LayoutManager.widthNHeight0(context, 1) * 0.55,
-                    height: LayoutManager.widthNHeight0(context, 0) * 0.06,
-                    child: InkWell(
-                      onTap: () async {
-                        if (key.currentState!.validate()) {
-
-
-                          bool t =await service.signIn(_idController.text, _passController.text);
-                          log(    t.toString());
-
-                          if(t) {
-                            AdminCheck=true;
-                            Navigator.of(context).pushReplacementNamed(homeAdminRoute);
-
-                          } else {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text("Error"),
-                                  content: const Text(
-                                      "An error happened"),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text("OK"),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Admin ID";
                           }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16),
 
-                        }
-                      },
-                      child: Container(
-                        height: LayoutManager.widthNHeight0(context, 0) * .07,
-                        decoration: BoxDecoration(
-                            color: ThemeManager.primary,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Center(
-                          child: Text(
-                            "Sign In",
+                      // Password Field
+                      TextFormField(
+                        controller: _passController,
+                        obscureText: _obscurePassword,
+                        decoration: InputDecoration(
+                          hintText: 'Enter Password',
+                          prefixIcon: const Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[100],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Password";
+                          } else if (value.length < 7) {
+                            return "Password length should be more than 7 characters";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Sign In Button
+                      SizedBox(
+                        width: double.infinity,
+                        height: 45,
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            if (key.currentState!.validate()) {
+                              bool t = await service.signIn(
+                                  _idController.text, _passController.text);
+                              log(t.toString());
+
+                              if (t) {
+                                AdminCheck = true;
+                                Navigator.of(context)
+                                    .pushReplacementNamed(homeAdminRoute);
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text("Error"),
+                                      content: const Text(
+                                          "Invalid admin credentials"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text("OK"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue[800],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Text(
+                            'SIGN IN',
                             style: TextStyle(
-                                color: ThemeManager.second,
-                                fontSize: 20,
-                                fontFamily: ThemeManager.fontFamily,
-                                fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: LayoutManager.widthNHeight0(context, 1) * 0.4,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Back to User Mode?",
-                        style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * .033,
-                            fontFamily: ThemeManager.fontFamily,
-                            color: Colors.grey[600]),
+                      const SizedBox(height: 20),
+
+                      // Back to User Mode
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Back to User Mode?",
+                            style: TextStyle(color: Colors.black87),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushReplacementNamed(signIn);
+                            },
+                            child: const Text(
+                              'Yes',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pushReplacementNamed(signIn);
-                          },
-                          child: Text(
-                            "Yes",
-                            style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 13,
-                                fontFamily: ThemeManager.fontFamily,
-                                color: Colors.grey[700]),
-                          ))
                     ],
                   ),
-                ])),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
