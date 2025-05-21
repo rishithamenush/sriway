@@ -162,74 +162,85 @@ class _HomeScreenState extends State<HomeScreen> {
                     return const Center(child: Text('No Places Yet'));
                   }
                   final places = snapshot.data!.places;
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: places.length,
-                    itemBuilder: (context, index) {
-                      final place = places[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed(placeDetailsRoute, arguments: place);
-                        },
-                        child: Card(
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
+                  return LayoutBuilder(
+                    builder: (context, constraints) {
+                      double cardWidth = constraints.maxWidth * 0.7;
+                      double imageHeight = 150;
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: places.length,
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final place = places[index];
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed(placeDetailsRoute, arguments: place);
+                            },
+                            child: Card(
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                child: place.images != null && place.images!.isNotEmpty
-                                    ? Image.network(
-                                        place.images![0],
-                                        fit: BoxFit.cover,
-                                        height: 150,
-                                        width: 280,
-                                      )
-                                    : Container(
-                                        height: 150,
-                                        width: 280,
-                                        color: Colors.grey[300],
-                                        child: const Icon(Icons.image, size: 60, color: Colors.white),
-                                      ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  place.title ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 22,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(
-                                  place.address ?? '',
-                                  style: TextStyle(color: Colors.grey[600]),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Row(
+                              margin: const EdgeInsets.symmetric(horizontal: 10),
+                              color: Colors.white,
+                              child: SizedBox(
+                                width: cardWidth,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Icon(Icons.star, color: Colors.amber, size: 16),
-                                    Text(
-                                      place.like != null ? place.like.toString() : '0',
-                                      style: TextStyle(color: Colors.grey[600]),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: place.images != null && place.images!.isNotEmpty
+                                          ? Image.network(
+                                              place.images![0],
+                                              fit: BoxFit.cover,
+                                              height: imageHeight,
+                                              width: cardWidth,
+                                            )
+                                          : Container(
+                                              height: imageHeight,
+                                              width: cardWidth,
+                                              color: Colors.grey[300],
+                                              child: const Icon(Icons.image, size: 60, color: Colors.white),
+                                            ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        place.title ?? '',
+                                        style: const TextStyle(
+                                          fontSize: 22,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Text(
+                                        place.address ?? '',
+                                        style: TextStyle(color: Colors.grey[600]),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.star, color: Colors.amber, size: 16),
+                                          Text(
+                                            place.like != null ? place.like.toString() : '0',
+                                            style: TextStyle(color: Colors.grey[600]),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       );
                     },
                   );
