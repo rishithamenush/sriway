@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // ThemeManager class to manage the application's theme colors and styles
 class ThemeManager {
   // Primary color used throughout the app
-  static Color primary = const Color(0xff6E232F);
+  static Color primary = const Color(0xFF1A73E8);
 
   // Secondary color used for backgrounds and other elements
   static Color second = const Color(0xffF7F3EE);
@@ -12,13 +12,13 @@ class ThemeManager {
   static Color background = const Color(0xffF0F2F6);
 
   // Color for text elements
-  static Color textColor = const Color(0xff31221D);
+  static Color textColor = const Color(0xFF1E64D7);
 
   // Background color for containers
   static Color containerback = const Color(0xffE2D1B9);
 
   // Color for favorite icons
-  static Color favIcon = const Color(0xFFA74040);
+  static Color favIcon = const Color(0xFF185BB2);
 
   // Font family used in the app
   static String fontFamily = 'KohSantepheap';
