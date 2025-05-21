@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 230,
               child: FutureBuilder<PlaceList>(
-                future: placeProvider.getMostPopularPlaces(),
+                future: placeProvider.placeList,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData || snapshot.data!.places.isEmpty) {
                     return const Center(child: Text('No Places Yet'));
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   return LayoutBuilder(
                     builder: (context, constraints) {
                       double cardWidth = constraints.maxWidth * 0.7;
-                      double imageHeight = 150;
+                      double imageHeight = 130;
                       return ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: places.length,
@@ -206,31 +206,36 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                                       child: Text(
                                         place.title ?? '',
                                         style: const TextStyle(
-                                          fontSize: 22,
+                                          fontSize: 18,
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
                                         ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                       child: Text(
                                         place.address ?? '',
-                                        style: TextStyle(color: Colors.grey[600]),
+                                        style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                                       child: Row(
                                         children: [
                                           const Icon(Icons.star, color: Colors.amber, size: 16),
+                                          const SizedBox(width: 4),
                                           Text(
                                             place.like != null ? place.like.toString() : '0',
-                                            style: TextStyle(color: Colors.grey[600]),
+                                            style: TextStyle(color: Colors.grey[600], fontSize: 13),
                                           ),
                                         ],
                                       ),
@@ -469,53 +474,60 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           margin: const EdgeInsets.symmetric(horizontal: 10),
                           color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: event.images != null && event.images!.isNotEmpty
-                                    ? Image.network(
-                                        event.images![0],
-                                        fit: BoxFit.cover,
-                                        height: 150,
-                                        width: 280,
-                                      )
-                                    : Container(
-                                        height: 150,
-                                        width: 280,
-                                        color: Colors.grey[300],
-                                        child: const Icon(Icons.image, size: 60, color: Colors.white),
-                                      ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  event.name ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 22,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
+                          child: SizedBox(
+                            width: 280,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: event.images != null && event.images!.isNotEmpty
+                                      ? Image.network(
+                                          event.images![0],
+                                          fit: BoxFit.cover,
+                                          height: 130,
+                                          width: 280,
+                                        )
+                                      : Container(
+                                          height: 130,
+                                          width: 280,
+                                          color: Colors.grey[300],
+                                          child: const Icon(Icons.image, size: 60, color: Colors.white),
+                                        ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                                  child: Text(
+                                    event.name ?? '',
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(
-                                  event.address ?? '',
-                                  style: TextStyle(color: Colors.grey[600]),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Text(
+                                    event.address ?? '',
+                                    style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(
-                                  event.description ?? '',
-                                  style: TextStyle(color: Colors.grey[600]),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                                  child: Text(
+                                    event.description ?? '',
+                                    style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );
