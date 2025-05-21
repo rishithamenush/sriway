@@ -636,7 +636,16 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           children: [
             _serviceIcon(context, Icons.location_on, 'Places', Colors.blue, () => Navigator.of(context).pushNamed(placesAdminRoute)),
-            _serviceIcon(context, Icons.hotel, 'Hotels', Colors.blue, () {}),
+            _serviceIcon(context, Icons.hotel, 'Hotels', Colors.blue, () async {
+              final url = Uri.parse('https://booking.kayak.com/');
+              try {
+                await launchUrl(url, mode: LaunchMode.externalApplication);
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Could not open browser.')),
+                );
+              }
+            }),
             _serviceIcon(context, Icons.flight_takeoff, 'Flights', Colors.blue, () async {
               final url = Uri.parse('https://www.srilankan.com/en_uk/go?redirect=1#ibe');
               try {

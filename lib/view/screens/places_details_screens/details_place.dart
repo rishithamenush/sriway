@@ -324,26 +324,26 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           },
                           borderWidth: 0,
                         ),
-                        if (AdminCheck)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16.0),
-                            child: ElevatedButton.icon(
-                              icon: Icon(Icons.edit, color: Colors.white),
-                              label: Text('Edit Place'),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: ThemeManager.primary,
-                                foregroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pushNamed(
-                                  editPlacesAdminRoute,
-                                  arguments: widget.placeModel,
-                                );
-                              },
-                            ),
-                          ),
+                        // if (AdminCheck)
+                        //   Padding(
+                        //     padding: const EdgeInsets.only(top: 16.0),
+                        //     child: ElevatedButton.icon(
+                        //       icon: Icon(Icons.edit, color: Colors.white),
+                        //       label: Text('Edit Place'),
+                        //       style: ElevatedButton.styleFrom(
+                        //         backgroundColor: ThemeManager.primary,
+                        //         foregroundColor: Colors.white,
+                        //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        //         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        //       ),
+                        //       onPressed: () {
+                        //         Navigator.of(context).pushNamed(
+                        //           editPlacesAdminRoute,
+                        //           arguments: widget.placeModel,
+                        //         );
+                        //       },
+                        //     ),
+                        //   ),
                       ],
                     )
                   ],
