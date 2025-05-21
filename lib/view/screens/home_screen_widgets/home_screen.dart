@@ -124,20 +124,66 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Ready for your next adventure?',
-                  style: TextStyle(
-                    fontSize: 38,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+            // Curved image header with overlay
+            Stack(
+              children: [
+                ClipPath(
+                  clipper: CurvedHeaderClipper(),
+                  child: Container(
+                    height: 200,
+                    width: double.infinity,
+                    child: Image.asset(
+                      'assets/images/img_png/img_1.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
+                // Overlay greeting and search bar
+                Positioned(
+                  left: 24,
+                  right: 24,
+                  top: 40,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _greeting,
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              offset: Offset(0, 2),
+                              blurRadius: 8,
+                              color: Colors.black26,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        'Ready for your next adventure?',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              offset: Offset(0, 2),
+                              blurRadius: 8,
+                              color: Colors.black26,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 18),
+                    ],
+                  ),
+                ),
+              ],
             ),
+            SizedBox(height: 24),
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Align(
@@ -588,4 +634,26 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+class CurvedHeaderClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(0, size.height - 60);
+    path.quadraticBezierTo(
+      size.width * 0.25, size.height,
+      size.width * 0.5, size.height - 40,
+    );
+    path.quadraticBezierTo(
+      size.width * 0.75, size.height - 80,
+      size.width, size.height - 40,
+    );
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
