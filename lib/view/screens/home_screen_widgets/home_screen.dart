@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: AppBar(
           automaticallyImplyLeading: false,
           elevation: 0,
-          backgroundColor: Colors.white,
+          backgroundColor: TourismColors.background,
           title: Row(
             children: [
               const Text(
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: TourismColors.primary,
                 ),
               ),
               const SizedBox(width: 12),
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Container(
                   height: 35,
                   decoration: BoxDecoration(
-                    color: Colors.grey[200],
+                    color: TourismColors.surface,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: TextField(
@@ -82,9 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         horizontal: 20,
                       ),
                       hintText: 'Where to?',
-                      hintStyle: TextStyle(color: Colors.grey[600]),
+                      hintStyle: TextStyle(color: TourismColors.textSecondary),
                       border: InputBorder.none,
-                      suffixIcon: const Icon(Icons.search, color: Colors.grey),
+                      suffixIcon: const Icon(Icons.search, color: TourismColors.primary),
                     ),
                   ),
                 ),
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 var data = snapshot.data;
                 if (data == null) {
                   return IconButton(
-                    icon: const Icon(Icons.notifications_none_outlined, color: Colors.grey),
+                    icon: const Icon(Icons.notifications_none_outlined, color: TourismColors.textSecondary),
                     onPressed: () {
                       Navigator.of(context).pushNamed(notificationPage);
                     },
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return IconButton(
                   icon: Icon(
                     hasUnread ? Icons.notifications_active : Icons.notifications_none_outlined,
-                    color: hasUnread ? Colors.blue : Colors.grey,
+                    color: hasUnread ? TourismColors.secondary : TourismColors.textSecondary,
                   ),
                   onPressed: () {
                     Navigator.of(context).pushNamed(notificationPage);
@@ -639,7 +639,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 60,
               height: 60,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.2),
+                color: color.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(50),
               ),
               child: Icon(icon, color: color, size: 35),
@@ -647,7 +647,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 8),
             Text(
               label,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TourismColors.textPrimary),
             ),
           ],
         ),
@@ -676,4 +676,14 @@ class CurvedHeaderClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+class TourismColors {
+  static const Color primary = Color(0xFF2196F3); // Vibrant Blue
+  static const Color secondary = Color(0xFFFF9800); // Lively Orange
+  static const Color accent = Color(0xFF43A047); // Fresh Green
+  static const Color background = Color(0xFFF7FAFC); // Soft White
+  static const Color surface = Color(0xFFFFFFFF); // White
+  static const Color textPrimary = Color(0xFF0D223A); // Dark Blue
+  static const Color textSecondary = Color(0xFF757575); // Grey
 }
