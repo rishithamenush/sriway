@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:turathi/core/data_layer.dart';
 import 'package:turathi/core/models/notification_model.dart';
 import 'package:turathi/view/view_layer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //user home page includes popular places,events,notifications and, actions such as:adding place,navigate through the app
 class HomeScreen extends StatefulWidget {
@@ -395,7 +396,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SizedBox(
                               width: 120,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  final url = Uri.parse('https://booking.kayak.com/');
+                                  try {
+                                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                                  } catch (e) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Could not open browser.')),
+                                    );
+                                  }
+                                },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.blue,
                                   backgroundColor: Colors.white,
@@ -480,7 +490,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SizedBox(
                               width: 120,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  final url = Uri.parse('https://booking.kayak.com/');
+                                  try {
+                                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                                  } catch (e) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Could not open browser.')),
+                                    );
+                                  }
+                                },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.blue,
                                   backgroundColor: Colors.white,
@@ -618,10 +637,28 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             _serviceIcon(context, Icons.location_on, 'Places', Colors.blue, () => Navigator.of(context).pushNamed(placesAdminRoute)),
             _serviceIcon(context, Icons.hotel, 'Hotels', Colors.blue, () {}),
-            _serviceIcon(context, Icons.flight_takeoff, 'Flights', Colors.blue, () {}),
+            _serviceIcon(context, Icons.flight_takeoff, 'Flights', Colors.blue, () async {
+              final url = Uri.parse('https://www.srilankan.com/en_uk/go?redirect=1#ibe');
+              try {
+                await launchUrl(url, mode: LaunchMode.externalApplication);
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Could not open browser.')),
+                );
+              }
+            }),
             _serviceIcon(context, Icons.car_rental, 'Rentals', Colors.blue, () {}),
             _serviceIcon(context, Icons.person, 'Guides', Colors.blue, () {}),
-            _serviceIcon(context, Icons.map, 'Map', Colors.blue, () {}),
+            _serviceIcon(context, Icons.map, 'Map', Colors.blue, () async {
+              final url = Uri.parse('https://www.google.com/maps');
+              try {
+                await launchUrl(url, mode: LaunchMode.externalApplication);
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Could not open browser.')),
+                );
+              }
+            }),
           ],
         ),
       ),
