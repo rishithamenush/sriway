@@ -54,7 +54,6 @@ class EventService {
   Future<EventList> getEvents() async {
     QuerySnapshot eventsData = await _fireStore
         .collection(_collectionName)
-        .where("date", isGreaterThan: DateTime.now())
         .get()
         .whenComplete(() {
       log("get events done");

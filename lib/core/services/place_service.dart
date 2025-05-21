@@ -46,8 +46,6 @@ class PlaceService {
   Future<PlaceList> getPlaces() async {
     QuerySnapshot placesData = await _fireStore
         .collection(_collectionName)
-        .where('isVisible', isEqualTo: true) // return only the visible places
-        .orderBy('like', descending: true) // order the list by the number of likes
         .get()
         .whenComplete(() {
       log("getPlaces done");
