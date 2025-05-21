@@ -40,7 +40,7 @@ class _PlacesAdminState extends State<PlacesAdmin> {
         centerTitle: true,
         backgroundColor: ThemeManager.background,
         title: Text(
-          'Admin All Places',
+          'All Places',
           style: ThemeManager.textStyle.copyWith(
             fontSize: LayoutManager.widthNHeight0(context, 1) * 0.05,
             fontWeight: FontWeight.bold,
